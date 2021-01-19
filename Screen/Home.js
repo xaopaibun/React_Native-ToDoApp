@@ -2,13 +2,12 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { CheckBox,Button,StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView, FlatList, Alert} from 'react-native';
-import item from '../Components/item';
-// import LinearGradient from 'react-native-linear-gradient';
-// import CheckBox from '@react-native-community/checkbox';
-// import Font_Size from '../Components/Font_Size';
+import LinearGradient from 'react-native-linear-gradient';
+
 const Item = ({item}, props) =>{
   const [isSelected, setSelection] = React.useState(false);
   const [item_dcchon, setitem_dcchon] = React.useState('');
+  
   const sendata = () =>{
     console.log(item.text);
     props.data(item.text);
@@ -82,28 +81,40 @@ const Home = ({navigation}) =>{
     }
  
   }
+  // const Box = ({title}) => {
+  //   return(
+  //    <View style={{flex:1, backgroundColor:'red',marginHorizontal:8 , borderRadius:10 , overflow:'hidden' , height:200}}>
+  //     <View style={{height:30,backgroundColor:'blue' , justifyContent:'center',paddingLeft:10}}>
+  //       <Text>{title}</Text>
+  //     </View>
+  // </View>
+  // ) 
+  // }
     return(
+      <ScrollView>
         <View style={styles.container}>
            
             <View style={styles.container_content}>
               <View style={styles.flex}>
                   <View style={styles.block}>
                       <View style={styles.block_title}>
-                        {/* <LinearGradient colors={['BD1313', 'FF8080']}> */}
+                        {/* <LinearGradient colors={['BD1313', 'FF8080'] } style={styles.block_title}> */}
                             <Text style={{fontSize: 16, lineHeight: 19, textAlign: 'left', color: '#FFFFFF',paddingLeft: 10}}>Color picker</Text>
-                        {/* </LinearGradient> */}
+                         {/* </LinearGradient> */}
                          
                       </View>
-                      <View style={styles.block_conten1}>
-                          {
-                          MauSac.map((value) =>{
-                            return(
-                              <TouchableOpacity  onPress={() =>{setColor(value )}} style={{width: 20, height: 20, backgroundColor: value.color, borderColor: color.id === value.id  ? '#000' : value.color, borderWidth: 2}}></TouchableOpacity>
-                            );
-                            
-                          })}
-                            
-                      </View>
+                      
+                        <View style={styles.block_conten1}>
+                            {
+                            MauSac.map((value) =>{
+                              return(
+                                <TouchableOpacity  onPress={() =>{setColor(value )}} style={{width: 20, marginHorizontal: 8, height: 20, backgroundColor: value.color, borderColor: color.id === value.id  ? '#000' : value.color, borderWidth: 2}}></TouchableOpacity>
+                              );
+                              
+                            })}
+                        </View>
+                      
+                      
                   </View>
                   <View style={styles.block}>
                       <View style={styles.block_title}>
@@ -116,7 +127,7 @@ const Home = ({navigation}) =>{
                               <View style={styles._input}>
                                   <Text style={{padding: 5}}>{font_Size}</Text>
                               </View>
-                              <View style={{width: 25, height: 20,  position: 'absolute', top: 15, right: 15, zIndex: 1111, }}>
+                              <View style={{width: 25, height: 20,  position: 'absolute', top: 15, right: 20, zIndex: 1111, }}>
                                 <Text style={{color: '#CFCFCF'}}>(px)</Text>
                               </View>
                           </View>
@@ -136,14 +147,16 @@ const Home = ({navigation}) =>{
                   <TouchableOpacity  onPress= {() =>{ done(text) }}style={[styles.nut, {height: 40, width: 74, marginTop: 5}]}><Text style={{color: '#FFFFFF'}}>Done</Text></TouchableOpacity>
               </View>
               <View style={styles.List_item}>
-                <View style={styles.List_item_header}></View>
-                <View style={styles.List_item_content}>
-                  <View style={styles.block_title}>
+                <View style={styles.block_title}>
+                
                     <Text style={{fontSize: 16, lineHeight: 19, textAlign: 'left', color: '#FFFFFF',paddingLeft: 10}}>TodoList</Text>
                   </View>
-                    <ScrollView>
+                
+                <View style={{backgroundColor:'white', flex: 8}}>
+                  <ScrollView >
                       <FlatList  keyExtractor={(item) => item.id}  data={list} renderItem={({item}) => <Item item={item} data ={MangDcChon} />}></FlatList> 
                     </ScrollView>
+                   
                       
                 </View>
               </View>
@@ -176,6 +189,7 @@ const Home = ({navigation}) =>{
               <TouchableOpacity style={styles.submit} onPress={OnSubmit}><Text style={{color: 'white', fontSize: 20}}>Submit</Text></TouchableOpacity>
             </View>  
         </View>
+        </ScrollView>
     );
 }
 const styles = StyleSheet.create({
@@ -184,7 +198,9 @@ const styles = StyleSheet.create({
        
     },
     container_content:{
-      margin: 10
+      margin: 12,
+      flex: 1,
+      
     },
     flex:{
         flexDirection: 'row',
@@ -193,8 +209,9 @@ const styles = StyleSheet.create({
     block_conten1:{
         flexDirection: 'row',
         margin: 10,
-        justifyContent:'space-around',
-        flexWrap:'wrap'
+        backgroundColor: 'white',
+        flexWrap:'wrap',
+        
     },
     header:{
         width: '100%',
@@ -212,26 +229,30 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.30,
         shadowRadius: 4.65,
-        borderRadius: 8,
+       
         elevation: 2.6,
         paddingLeft: 12,
         marginRight: 20,
     },
     block:{
-        width: 160,
+        flex: 1,
+        borderRadius: 8,
+        marginHorizontal: 3,
         height: 113,
-        borderWidth: 0.00001,
-        shadowColor: "#000",
+        overflow:'hidden',
+        backgroundColor: '#FFFFFF', borderRadius: 5, borderWidth: 0.00001, shadowColor: "#000",
         shadowOffset: {
           width: 0,
           height: 5,
         },
         shadowOpacity: 0.30,
         shadowRadius: 4.65,
-        borderRadius: 8,
+       
         elevation: 2.6,
+        
     },
     block_title:{
+      
         height: 34,
         backgroundColor: '#BD1313',
        borderTopRightRadius: 8,
@@ -241,10 +262,11 @@ const styles = StyleSheet.create({
     _input:{
         backgroundColor: 'rgba(243, 243, 243, 1)',
         borderRadius: 5,
-        width: 114,
+        flex: 1,
         height: 30,
         marginTop:10,
         position: 'relative',
+        marginRight: 15
     },
     nut:{
         backgroundColor:'#BD2B26',
@@ -260,7 +282,8 @@ const styles = StyleSheet.create({
     },
     List_item:{
       marginTop: 20,
-      height: 200,
+      flex: 1,
+      height: 250,
       borderWidth: 0.00001,
         shadowColor: "#000",
         shadowOffset: {
@@ -284,6 +307,7 @@ const styles = StyleSheet.create({
       height: 'auto',
       marginBottom: 50,
       marginTop: 30,
+      backgroundColor:'white',
       borderWidth: 0.00001,
         shadowColor: "#000",
         shadowOffset: {
