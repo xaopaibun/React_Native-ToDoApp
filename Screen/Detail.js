@@ -11,12 +11,12 @@ import { CheckBox,Button,StyleSheet, Text, View, TouchableOpacity, Image, TextIn
                       </View>
                       <View style={styles.block_conten}>
                           <View style={[styles.flex,{height: 45}]}>
-                              <Text style={styles.text}>Color: <View style={{width: 25, height: 25, backgroundColor: route.params.color}}></View></Text>
+                              <Text style={styles.text}>Color:    <View style={{width: 25, height: 25, backgroundColor: route.params.color}}></View></Text>
                               <Text style={styles.text}>Size: {route.params.font_Size}</Text>
                               <Text style={styles.text}>Todo List: </Text>
                               <View>
                                   {
-                                  route.params.arr.map( (text) => <Text style={{paddingLeft: 10}}> - {text}</Text>)
+                                  route.params.arr.map( (text) => <Text style={{paddingLeft: 10, marginTop: 10}}> - {text}</Text>)
                                   }
                                   
                                  
@@ -32,11 +32,14 @@ import { CheckBox,Button,StyleSheet, Text, View, TouchableOpacity, Image, TextIn
 const styles = StyleSheet.create({
    container:{
         flex: 1,
-        margin: 10
+        margin: 20
    },
    block:{
+       backgroundColor:'white',
     width: '100%',
     height: 300,
+    borderRadius: 8,
+    overflow:'hidden',
     borderWidth: 0.00001,
     shadowColor: "#000",
     shadowOffset: {
@@ -45,14 +48,14 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.30,
     shadowRadius: 4.65,
-    borderRadius: 8,
+    
     elevation: 2.6,
+    
     },
     block_title:{
         height: 34,
         backgroundColor: '#BD1313',
-    borderTopRightRadius: 8,
-    borderTopStartRadius: 8,
+    
     justifyContent: 'center'
     },
     block_conten1:{
